@@ -19,7 +19,7 @@ public class person {
 		this.infected_days = 0;
 		this.age = random.nextInt(100);
 		this.tested = false;
-		this.area = "area1";
+		this.area = setArea();
 	}
 	
 	public void masked(Double uom) {
@@ -30,6 +30,20 @@ public class person {
 			this.masked = false;
 		}
 	}
+	
+	public String setArea() {
+		int num = random.nextInt(4);
+		switch(num) {
+		case 0:
+			return "area1";
+		case 1:
+			return "area2";
+		case 2:
+			return "area3";
+		}
+		return "area4";
+	}
+	
 	
 	//get id
 	public int getNum() {

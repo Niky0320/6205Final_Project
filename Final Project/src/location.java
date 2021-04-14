@@ -57,4 +57,8 @@ public class location{
 		return list2.get(i);
 	}
 	
+	public void show() {
+		System.out.println(size2);
+	}
+	
 }
