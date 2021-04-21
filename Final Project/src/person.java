@@ -6,8 +6,7 @@ public class person {
 	private String status; // ×´Ì¬£¨Õý³££¬ËÀÍö£¬¸ÐÈ¾£¬ÒÑ×¢ÉäÒßÃç£©
 	private int infected_days;
 	private int age;
-	private boolean tested;
-	private String area;
+	private location area;
 	private boolean masked;
 	Random random = new Random();
 	
@@ -18,8 +17,7 @@ public class person {
 		this.status = "normal";
 		this.infected_days = 0;
 		this.age = random.nextInt(100);
-		this.tested = false;
-		this.area = setArea();
+		
 	}
 	
 	public void masked(Double uom) {
@@ -31,18 +29,9 @@ public class person {
 		}
 	}
 	
-	public String setArea() {
-		int num = random.nextInt(4);
-		switch(num) {
-		case 0:
-			return "area1";
-		case 1:
-			return "area2";
-		case 2:
-			return "area3";
-		}
-		return "area4";
-	}
+	public void setArea(location area) {
+		this.area = area;
+	}  
 	
 	
 	//get id
@@ -71,12 +60,36 @@ public class person {
 	}
 	
 	//update the days of infected people
-	public void updateID() {
-		this.infected_days++;
-	}
-	
-	public boolean getTested() {
-		return this.tested;
+	public void updateID(int rr) {
+		if(this.status=="infected") {
+			this.infected_days++;
+		}
+		
+		if(this.infected_days > 7 && this.infected_days<15) {
+			int rand = random.nextInt(100);
+			if(rand>90) {
+				int recover = random.nextInt(100);
+				if(recover<rr) {	
+					this.status = "vaccined";
+					this.infected_days = 0;
+				}else{		
+					this.status = "died";
+					this.infected_days = 0;
+				}
+			}
+		}else if(infected_days>=15) {
+			int recover = random.nextInt(100);
+			if(this.age>=65 || this.age<=16) {
+				recover = recover+20;
+			}
+			if(recover<rr) {	
+				this.status = "vaccined";
+				this.infected_days = 0;
+			}else{		
+				this.status = "died";
+				this.infected_days = 0;
+			}
+		}
 	}
 	
 	
@@ -84,13 +97,20 @@ public class person {
 		return this.age;
 	}
 	
-	public String getArea() {
+	public location getArea() {
 		return this.area;
 	}
 	
 	public boolean getMask() {
 		return this.masked;
 	}
+	
+	public String getInfo() {
+		String info = "";
+		info = info + "ID:" + this.num +"Status:" + this.quarantined;
+		return info;
+	}
+	
 	
 	
 }

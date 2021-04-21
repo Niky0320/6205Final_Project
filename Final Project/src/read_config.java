@@ -11,7 +11,6 @@ public class read_config {
 	private String infector;
 	private String days;
 	private String name; //name of disease
-	private String k; //k factor
 	private String r; //r factor
 	private String uom; //usage of masks
 	private String eom; //effectiveness of masks
@@ -20,6 +19,8 @@ public class read_config {
 	private String av; //availability of the vaccine
 	private String ev; //efficacy of the vaccine
 	private String barriers; //barriers to entry
+	private String rr; //recover rate
+	private String datev; //date to get vaccine
 	
 	
 	/*
@@ -43,7 +44,6 @@ public class read_config {
 		this.infector = prop.getProperty("virus.infector");
 		this.days = prop.getProperty("virus.days");
 		this.name = prop.getProperty("virus.name");
-		this.k = prop.getProperty("virus.k");
 		this.r = prop.getProperty("virus.r");
 		this.uom = prop.getProperty("virus.uom");
 		this.eom = prop.getProperty("virus.eom");
@@ -52,6 +52,8 @@ public class read_config {
 		this.av = prop.getProperty("virus.av");
 		this.ev = prop.getProperty("virus.ev");
 		this.barriers = prop.getProperty("virus.barriers");
+		this.rr = prop.getProperty("virus.rr");
+		this.datev = prop.getProperty("virus.dateofv");
 	}
 	
 	/*
@@ -62,12 +64,6 @@ public class read_config {
 		
 	}
 	
-	/*
-	 * get method for k
-	 */
-	public Double getK() {
-		return Double.parseDouble(this.k);
-	}
 	
 	/*
 	 * get method for r
@@ -125,16 +121,34 @@ public class read_config {
 	public Double getBarriers() {
 		 return Double.parseDouble(this.barriers);
 	}
-	
+	/*
+	 * get method for whole population
+	 */
 	public int getPop() {
 		return Integer.parseInt(this.population);
 	}
-	
+	/*
+	 * get method for initial infectors
+	 */
 	public int getInf() {
 		return Integer.parseInt(this.infector);
 	}
-	
+	/*
+	 * get method for days to simulate
+	 */
 	public int getDays() {
 		return Integer.parseInt(this.days);
+	}
+	/*
+	 * get method for recover rate
+	 */
+	public int getRr() {
+		return Integer.parseInt(this.rr);
+	}
+	/*
+	 * get method for date start to get vaccine
+	 */
+	public int getDateofv() {
+		return Integer.parseInt(this.datev);
 	}
 }
